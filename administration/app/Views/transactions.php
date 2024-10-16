@@ -39,13 +39,36 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    
+                                    <?php if(isset($stores) && $stores) :?>
+                                        <?php foreach($stores as $store) :?>
+                                            <tr>
+                                                <td><?= $store['store_name'] ;?></td>
+                                                <td><?= $store['store_owner'] ;?></td>
+                                                <td>
+                                                    R$ <?= number_format($store['total_entradas'], 2, ',', '.') ;?>
+                                                </td>
+                                                <td>
+                                                    R$ <?= number_format($store['total_saidas'], 2, ',', '.') ;?>
+                                                </td>
+                                                <td>
+                                                    R$ <?= $store['saldo'] >= 0 ? '<span class="badge badge-success p-1">'. number_format($store['saldo'], 2, ',', '.') .'</span>' : '<span class="badge badge-danger p-1">'. number_format($store['saldo'], 2, ',', '.') .'</span>' ;?>
+                                                </td>
+                                                <td>
+                                                    <a href="#" type="button" class="btn btn-primary btn-sm" onclick="openModalDetailsTransaction(<?= $store['store_id'] ;?>, '<?= $store['store_name'] ;?>')">Detalhes</a>
+                                                </td>
+                                            </tr>
+                                        <?php endforeach;?>
+                                    <?php else :?>
+                                        <tr>
+                                            <td colspan="6" class="text-center">Nenhuma transação encontrada.</td>
+                                        </tr>
+                                    <?php endif;?>
                                 </tbody>
                             </table>
                         </div>
                         <div class="card-footer">
                             <div class="text-right">
-                                <a href="<?= base_url('upload')?>" type="button" class="btn btn-secondary" id="">Página de Upload de Arquivo</a>
+                                <a href="<?= base_url()?>" type="button" class="btn btn-secondary" id="">Página de Upload de Arquivo</a>
                             </div>
                         </div>
                     </div>
