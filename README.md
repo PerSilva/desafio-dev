@@ -145,7 +145,7 @@ O corpo da requisição deve ser enviado o array com dos dados das lojas e trans
 #### Parâmetros:
 - **store_name**: (string) Nome da loja.
 - **store_owner**: (string) Nome do proprietário da loja.
-- **type**: (string) Tipo de transação(Entradas e Saídas).
+- **type**: (tinyint) Tipo de transação(Entradas e Saídas).
 - **date**: (date) Data da transação.
 - **time**: (time) Hora da transação.
 - **value**: (float) Valor da transação.
@@ -158,15 +158,15 @@ POST /upload
 URL : http://localhost/projetos/desafio-dev/api/upload
 
 
-return [
-            'type'          => (int)substr($line, 0, 1),
-            'date'          => substr($line, 1, 8),
-            'value'         => (float)substr($line, 9, 10) / 100,
-            'cpf'           => substr($line, 19, 11),
-            'card'          => substr($line, 30, 12),
-            'time'          => substr($line, 42, 6),
-            'store_owner'   => trim(substr($line, 48, 14)),
-            'store_name'    => trim(substr($line, 62, 19)),
+       [
+            'type'          => 1,
+            'date'          => '2024-10-16',
+            'value'         => 1'52,14',
+            'cpf'           => '06652598830',
+            'card'          => '2344****1222',
+            'time'          => '14:14:25',
+            'store_owner'   => 'João Brasil',
+            'store_name'    => 'Pastelaria do João',
         ];
 
 ### Respostas:
@@ -188,8 +188,7 @@ A API irá retornar um JSON com o status da operação e uma mensagem de erro ca
 ```
 
 ### Tratamento de Erros:
-- **500 Internal Server Error**: Em caso de erro interno do servidor, será retornada uma mensagem descrevendo o erro ocorrido.
-- **422 Unprocessable Entity**: Se houver algum problema na validação dos dados enviados, será retornado um status de erro e detalhes da falha.
+-  Em caso de erro interno do servidor, será retornada uma mensagem descrevendo o erro ocorrido.
 
 7. **Acessar o Projeto**:
-   - Acesse pelo navegador em `http://localhost:8080`
+   - Acesse pelo navegador em `http://localhost:8080/projetos/desafio-dev`
