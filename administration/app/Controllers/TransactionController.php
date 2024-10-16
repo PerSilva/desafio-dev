@@ -9,10 +9,25 @@ class TransactionController extends BaseController {
      */
     public function index() {
         try {
-            return view('transactions');
+            $client     = \Config\Services::curlrequest();
+            $response   = $client->request('GET', API_URL . 'transactions');
+            $data       = json_decode($response->getBody());
+
+            return view('transactions', ['stores' => $data]);
         } catch (\Exception $e) {
             return $e->getMessage();
         }
+    }
+
+    /**
+     * Método que retorna os detalhes de todas transações da loja.
+     * @param Int [$storeId]
+     */
+    public function getDetailsTransaction($storeId) {
+        $client     = \Config\Services::curlrequest();
+        $response   = $client->request('GET', API_URL . 'transactions/' .  $storeId);
+        $data       = json_decode($response->getBody());
+        return view('modalDetailsTransaction', ['transactions'=>$data]);
     }
 }
 

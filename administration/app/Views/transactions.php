@@ -42,19 +42,19 @@
                                     <?php if(isset($stores) && $stores) :?>
                                         <?php foreach($stores as $store) :?>
                                             <tr>
-                                                <td><?= $store['store_name'] ;?></td>
-                                                <td><?= $store['store_owner'] ;?></td>
+                                                <td><?= $store->store_name;?></td>
+                                                <td><?= $store->store_owner ;?></td>
                                                 <td>
-                                                    R$ <?= number_format($store['total_entradas'], 2, ',', '.') ;?>
+                                                    R$ <?= number_format($store->total_entradas, 2, ',', '.') ;?>
                                                 </td>
                                                 <td>
-                                                    R$ <?= number_format($store['total_saidas'], 2, ',', '.') ;?>
+                                                    R$ <?= number_format($store->total_saidas, 2, ',', '.') ;?>
                                                 </td>
                                                 <td>
-                                                    R$ <?= $store['saldo'] >= 0 ? '<span class="badge badge-success p-1">'. number_format($store['saldo'], 2, ',', '.') .'</span>' : '<span class="badge badge-danger p-1">'. number_format($store['saldo'], 2, ',', '.') .'</span>' ;?>
+                                                    R$ <?= $store->saldo >= 0 ? '<span class="badge badge-success p-1">'. number_format($store->saldo, 2, ',', '.') .'</span>' : '<span class="badge badge-danger p-1">'. number_format($store->saldo, 2, ',', '.') .'</span>' ;?>
                                                 </td>
                                                 <td>
-                                                    <a href="#" type="button" class="btn btn-primary btn-sm" onclick="openModalDetailsTransaction(<?= $store['store_id'] ;?>, '<?= $store['store_name'] ;?>')">Detalhes</a>
+                                                    <a href="#" type="button" class="btn btn-primary btn-sm" onclick="openModalDetailsTransaction(<?= $store->store_id ;?>, '<?= $store->store_name ;?>')">Detalhes</a>
                                                 </td>
                                             </tr>
                                         <?php endforeach;?>

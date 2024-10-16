@@ -43,6 +43,7 @@ defined('YEAR')   || define('YEAR', 31_536_000);
 defined('DECADE') || define('DECADE', 315_360_000);
 
 defined('BASE_URL')        || define('BASE_URL', 'http://localhost/projetos/desafio-dev/administration/');
+defined('API_URL')        || define('API_URL', 'http://localhost/projetos/desafio-dev/api/');
 
 /*
  | --------------------------------------------------------------------------

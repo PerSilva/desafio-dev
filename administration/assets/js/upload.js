@@ -9,7 +9,7 @@ $(document).on('submit', '#uploadForm', function(e) {
     if(!result) {
         $.ajax({
             type     : "POST",
-            url      : baseUrl+"upload",
+            url      : baseUrl,
             data: formData,
             dataType : "JSON",
             processData: false,
