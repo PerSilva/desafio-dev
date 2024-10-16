@@ -128,6 +128,80 @@
 
 6. **Configurar o Ambiente (.env)**:
    - Renomeie o arquivo `.env.example` para `.env` e configure as variáveis.
+  
+
+
+# Documentação da API - Upload de Transação
+
+## Descrição:
+Este endpoint permite realizar o upload de informações de transação para o sistema. Os dados serão enviados via POST, incluindo informações sobre a loja e os detalhes da transação. O arquivo será salvo no banco de dados após a validação dos dados fornecidos.
+
+### URL:
+**POST** `/upload`
+
+### Requisição:
+O corpo da requisição deve ser enviado em formato `multipart/form-data`, contendo os seguintes parâmetros:
+
+#### Parâmetros:
+- **store_name**: (string) Nome da loja.
+- **store_owner**: (string) Nome do proprietário da loja.
+- **file**: (file) Arquivo contendo as informações da transação.
+- **transaction_date**: (date) Data da transação.
+- **transaction_value**: (float) Valor da transação.
+- **other_field**: (outros campos necessários) Caso tenha outros campos adicionais para a transação.
+
+#### Exemplo de Requisição:
+```bash
+POST /upload HTTP/1.1
+Host: seu-servidor.com
+Content-Type: multipart/form-data; boundary=---Boundary
+Content-Length: tamanho-do-corpo
+
+---Boundary
+Content-Disposition: form-data; name="store_name"
+
+Loja Exemplo
+---Boundary
+Content-Disposition: form-data; name="store_owner"
+
+Proprietário Exemplo
+---Boundary
+Content-Disposition: form-data; name="file"; filename="arquivo.txt"
+Content-Type: text/plain
+
+(conteúdo do arquivo)
+---Boundary
+Content-Disposition: form-data; name="transaction_date"
+
+2024-10-16
+---Boundary
+Content-Disposition: form-data; name="transaction_value"
+
+100.50
+---Boundary--
+```
+
+### Respostas:
+A API irá retornar um JSON com o status da operação e uma mensagem de erro caso haja algum problema.
+
+#### Sucesso:
+```json
+{
+  "status": true
+}
+```
+
+#### Falha (exemplo de erro):
+```json
+{
+  "status": false,
+  "message": "Mensagem de erro ou query gerada"
+}
+```
+
+### Tratamento de Erros:
+- **500 Internal Server Error**: Em caso de erro interno do servidor, será retornada uma mensagem descrevendo o erro ocorrido.
+- **422 Unprocessable Entity**: Se houver algum problema na validação dos dados enviados, será retornado um status de erro e detalhes da falha.
 
 7. **Acessar o Projeto**:
    - Acesse pelo navegador em `http://localhost:8080`
