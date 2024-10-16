@@ -25,19 +25,19 @@
                       <?php if($transactions) :?>
                           <?php foreach($transactions as $transaction) :?>
                               <tr>
-                                  <td><?= date('d/m/Y', strtotime($transaction['date'])) ;?></td>
-                                  <td><?= date('H:i', strtotime($transaction['time'])) ;?></td>
+                                  <td><?= date('d/m/Y', strtotime($transaction->date)) ;?></td>
+                                  <td><?= date('H:i', strtotime($transaction->time)) ;?></td>
                                   <td>
-                                      R$ <?= number_format($transaction['value'], 2, ',', '.') ;?>
+                                      R$ <?= number_format($transaction->value, 2, ',', '.') ;?>
                                   </td>
                                   <td>
-                                      <?= $transaction['type_description']['description'];?>
+                                      <?= $transaction->type_description->description;?>
                                   </td>
                                   <td>
-                                      <?= $transaction['type_description']['natureza'];?>
+                                      <?= $transaction->type_description->natureza;?>
                                   </td>
                                   <td>
-                                      <?= $transaction['card'];?>
+                                      <?= $transaction->card;?>
                                   </td>
                               </tr>
                           <?php endforeach;?>

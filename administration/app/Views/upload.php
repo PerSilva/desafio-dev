@@ -16,6 +16,7 @@
 
         <!-- SweetAlert CDN -->
         <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+        <script src="<?= base_url('js/jquery.blockUI.js') ?>"></script> <!-- BlockUI -->
     </head>
     <body>
         <div class="container">    
