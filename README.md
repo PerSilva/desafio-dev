@@ -131,9 +131,3 @@
 
 7. **Acessar o Projeto**:
    - Acesse pelo navegador em `http://localhost:8080`
-
----
-
-### Considerações Finais:
-- **Configuração do Banco de Dados**: Não se esqueça de configurar corretamente as credenciais de acesso ao banco de dados no arquivo `.env`.
-- **Módulos PHP**: Garanta que os módulos PHP necessários (como `pdo`, `mysqli`) estão habilitados.
