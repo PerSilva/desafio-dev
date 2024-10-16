@@ -134,52 +134,40 @@
 # Documentação da API - Upload de Transação
 
 ## Descrição:
-Este endpoint permite realizar o upload de informações de transação para o sistema. Os dados serão enviados via POST, incluindo informações sobre a loja e os detalhes da transação. O arquivo será salvo no banco de dados após a validação dos dados fornecidos.
+Este endpoint permite enviar os dados do arquivo que serão via POST, incluindo informações sobre a loja e os detalhes da transação.
 
 ### URL:
 **POST** `/upload`
 
 ### Requisição:
-O corpo da requisição deve ser enviado em formato `multipart/form-data`, contendo os seguintes parâmetros:
+O corpo da requisição deve ser enviado o array com dos dados das lojas e transações.
 
 #### Parâmetros:
 - **store_name**: (string) Nome da loja.
 - **store_owner**: (string) Nome do proprietário da loja.
-- **file**: (file) Arquivo contendo as informações da transação.
-- **transaction_date**: (date) Data da transação.
-- **transaction_value**: (float) Valor da transação.
-- **other_field**: (outros campos necessários) Caso tenha outros campos adicionais para a transação.
+- **type**: (string) Tipo de transação(Entradas e Saídas).
+- **date**: (date) Data da transação.
+- **time**: (time) Hora da transação.
+- **value**: (float) Valor da transação.
+- **cpf**: (string) Cpf do cliente.
+- **card**: (string) Cartão do cliente.
 
 #### Exemplo de Requisição:
 ```bash
-POST /upload HTTP/1.1
-Host: seu-servidor.com
-Content-Type: multipart/form-data; boundary=---Boundary
-Content-Length: tamanho-do-corpo
+POST /upload
+URL : http://localhost/projetos/desafio-dev/api/upload
 
----Boundary
-Content-Disposition: form-data; name="store_name"
 
-Loja Exemplo
----Boundary
-Content-Disposition: form-data; name="store_owner"
-
-Proprietário Exemplo
----Boundary
-Content-Disposition: form-data; name="file"; filename="arquivo.txt"
-Content-Type: text/plain
-
-(conteúdo do arquivo)
----Boundary
-Content-Disposition: form-data; name="transaction_date"
-
-2024-10-16
----Boundary
-Content-Disposition: form-data; name="transaction_value"
-
-100.50
----Boundary--
-```
+return [
+            'type'          => (int)substr($line, 0, 1),
+            'date'          => substr($line, 1, 8),
+            'value'         => (float)substr($line, 9, 10) / 100,
+            'cpf'           => substr($line, 19, 11),
+            'card'          => substr($line, 30, 12),
+            'time'          => substr($line, 42, 6),
+            'store_owner'   => trim(substr($line, 48, 14)),
+            'store_name'    => trim(substr($line, 62, 19)),
+        ];
 
 ### Respostas:
 A API irá retornar um JSON com o status da operação e uma mensagem de erro caso haja algum problema.
