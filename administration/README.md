@@ -1,68 +1,85 @@
-# CodeIgniter 4 Application Starter
+# Desafio programação - para vaga desenvolvedor
 
-## What is CodeIgniter?
+Por favor leiam este documento do começo ao fim, com muita atenção.
+O intuito deste teste é avaliar seus conhecimentos técnicos em programação.
+O teste consiste em parsear [este arquivo de texto(CNAB)](CNAB.txt) e salvar suas informações(transações financeiras) em uma base de dados a critério do candidato.
+Este desafio deve ser feito por você em sua casa. Gaste o tempo que você quiser, porém normalmente você não deve precisar de mais do que algumas horas.
 
-CodeIgniter is a PHP full-stack web framework that is light, fast, flexible and secure.
-More information can be found at the [official site](https://codeigniter.com).
+# Instruções de entrega do desafio
 
-This repository holds a composer-installable app starter.
-It has been built from the
-[development repository](https://github.com/codeigniter4/CodeIgniter4).
+1. Primeiro, faça um fork deste projeto para sua conta no Github (crie uma se você não possuir).
+2. Em seguida, implemente o projeto tal qual descrito abaixo, em seu clone local.
+3. Por fim, envie via email o projeto ou o fork/link do projeto para seu contato o e-mail do seu contato.
 
-More information about the plans for version 4 can be found in [CodeIgniter 4](https://forum.codeigniter.com/forumdisplay.php?fid=28) on the forums.
+# Descrição do projeto
 
-You can read the [user guide](https://codeigniter.com/user_guide/)
-corresponding to the latest version of the framework.
+Você recebeu um arquivo CNAB com os dados das movimentações finanaceira de várias lojas.
+Precisamos criar uma maneira para que estes dados sejam importados para um banco de dados.
 
-## Installation & updates
+Sua tarefa é criar uma interface web que aceite upload do [arquivo CNAB](./CNAB.txt), normalize os dados e armazene-os em um banco de dados relacional e exiba essas informações em tela.
 
-`composer create-project codeigniter4/appstarter` then `composer update` whenever
-there is a new release of the framework.
+**Sua aplicação web DEVE:**
 
-When updating, check the release notes to see if there are any changes you might need to apply
-to your `app` folder. The affected files can be copied or merged from
-`vendor/codeigniter4/framework/app`.
+1. Ter uma tela (via um formulário) para fazer o upload do arquivo(pontos extras se não usar um popular CSS Framework )
+2. Interpretar ("parsear") o arquivo recebido, normalizar os dados, e salvar corretamente a informação em um banco de dados relacional, **se atente as documentações** que estão logo abaixo.
+3. Exibir uma lista das operações importadas por lojas, e nesta lista deve conter um totalizador do saldo em conta
+4. Ser escrita na sua linguagem de programação de preferência
+5. Ser simples de configurar e rodar, funcionando em ambiente compatível com Unix (Linux ou Mac OS X). Ela deve utilizar apenas linguagens e bibliotecas livres ou gratuitas.
+6. Git com commits atomicos e bem descritos
+7. PostgreSQL, MySQL ou SQL Server
+8. Ter testes automatizados
+9. Docker compose (Pontos extras se utilizar)
+10. Readme file descrevendo bem o projeto e seu setup
+11. Incluir informação descrevendo como consumir o endpoint da API
 
-## Setup
+**Sua aplicação web não precisa:**
 
-Copy `env` to `.env` and tailor for your app, specifically the baseURL
-and any database settings.
+1. Lidar com autenticação ou autorização (pontos extras se ela fizer, mais pontos extras se a autenticação for feita via OAuth).
+2. Ser escrita usando algum framework específico (mas não há nada errado em usá-los também, use o que achar melhor).
+3. Documentação da api.(Será um diferencial e pontos extras se fizer)
 
-## Important Change with index.php
+# Documentação do CNAB
 
-`index.php` is no longer in the root of the project! It has been moved inside the *public* folder,
-for better security and separation of components.
+| Descrição do campo  | Inicio | Fim | Tamanho | Comentário
+| ------------- | ------------- | -----| ---- | ------
+| Tipo  | 1  | 1 | 1 | Tipo da transação
+| Data  | 2  | 9 | 8 | Data da ocorrência
+| Valor | 10 | 19 | 10 | Valor da movimentação. *Obs.* O valor encontrado no arquivo precisa ser divido por cem(valor / 100.00) para normalizá-lo.
+| CPF | 20 | 30 | 11 | CPF do beneficiário
+| Cartão | 31 | 42 | 12 | Cartão utilizado na transação 
+| Hora  | 43 | 48 | 6 | Hora da ocorrência atendendo ao fuso de UTC-3
+| Dono da loja | 49 | 62 | 14 | Nome do representante da loja
+| Nome loja | 63 | 81 | 19 | Nome da loja
 
-This means that you should configure your web server to "point" to your project's *public* folder, and
-not to the project root. A better practice would be to configure a virtual host to point there. A poor practice would be to point your web server to the project root and expect to enter *public/...*, as the rest of your logic and the
-framework are exposed.
+# Documentação sobre os tipos das transações
 
-**Please** read the user guide for a better explanation of how CI4 works!
+| Tipo | Descrição | Natureza | Sinal |
+| ---- | -------- | --------- | ----- |
+| 1 | Débito | Entrada | + |
+| 2 | Boleto | Saída | - |
+| 3 | Financiamento | Saída | - |
+| 4 | Crédito | Entrada | + |
+| 5 | Recebimento Empréstimo | Entrada | + |
+| 6 | Vendas | Entrada | + |
+| 7 | Recebimento TED | Entrada | + |
+| 8 | Recebimento DOC | Entrada | + |
+| 9 | Aluguel | Saída | - |
 
-## Repository Management
+# Avaliação
 
-We use GitHub issues, in our main repository, to track **BUGS** and to track approved **DEVELOPMENT** work packages.
-We use our [forum](http://forum.codeigniter.com) to provide SUPPORT and to discuss
-FEATURE REQUESTS.
+Seu projeto será avaliado de acordo com os seguintes critérios.
 
-This repository is a "distribution" one, built by our release preparation script.
-Problems with it can be raised on our forum, or as issues in the main repository.
+1. Sua aplicação preenche os requerimentos básicos?
+2. Você documentou a maneira de configurar o ambiente e rodar sua aplicação?
+3. Você seguiu as instruções de envio do desafio?
+4. Qualidade e cobertura dos testes unitários.
 
-## Server Requirements
+Adicionalmente, tentaremos verificar a sua familiarização com as bibliotecas padrões (standard libs), bem como sua experiência com programação orientada a objetos a partir da estrutura de seu projeto.
 
-PHP version 8.1 or higher is required, with the following extensions installed:
+# Referência
 
-- [intl](http://php.net/manual/en/intl.requirements.php)
-- [mbstring](http://php.net/manual/en/mbstring.installation.php)
+Este desafio foi baseado neste outro desafio: https://github.com/lschallenges/data-engineering
 
-> [!WARNING]
-> - The end of life date for PHP 7.4 was November 28, 2022.
-> - The end of life date for PHP 8.0 was November 26, 2023.
-> - If you are still using PHP 7.4 or 8.0, you should upgrade immediately.
-> - The end of life date for PHP 8.1 will be December 31, 2025.
+---
 
-Additionally, make sure that the following extensions are enabled in your PHP:
-
-- json (enabled by default - don't turn it off)
-- [mysqlnd](http://php.net/manual/en/mysqlnd.install.php) if you plan to use MySQL
-- [libcurl](http://php.net/manual/en/curl.requirements.php) if you plan to use the HTTP\CURLRequest library
+Boa sorte!
