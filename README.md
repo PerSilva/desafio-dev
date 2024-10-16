@@ -1,5 +1,5 @@
 # Tecnologias Utilizadas
-Este projeto foi desenvolvido utilizando CodeIgniter 4 como framework PHP, proporcionando uma estrutura sólida e organizada para a aplicação. A linguagem PHP foi utilizada para a lógica do servidor, enquanto JavaScript e jQuery foram empregados para manipulação dinâmica do conteúdo do lado do cliente, possibilitando uma melhor experiência do usuário.
+Este projeto foi desenvolvido utilizando a linguagem PHP, juntamente com o framework CodeIgniter 4 como framework PHP, proporcionando uma estrutura sólida e organizada para a aplicação,  para a lógica do servidor, enquanto JavaScript e jQuery foram empregados para manipulação dinâmica do conteúdo do lado do cliente, possibilitando uma melhor experiência do usuário.
 
 A biblioteca SweetAlert foi utilizada para melhorar as notificações e mensagens de alerta, tornando-as mais amigáveis e visuais. Além disso, o Bootstrap foi aplicado para estilizar a interface e garantir um layout responsivo e moderno.
 
