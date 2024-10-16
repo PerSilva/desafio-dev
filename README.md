@@ -6,7 +6,7 @@ A biblioteca SweetAlert foi utilizada para melhorar as notificações e mensagen
 Essas tecnologias foram escolhidas para proporcionar uma experiência de desenvolvimento ágil e uma interface rica e interativa para o usuário final.
 
 # Testes
-Para rodar os testes, tem que navegar até a pasta da api do projeto, e rodar o comando
+Para realizar os testes, tem que navegar até a pasta da api do projeto, e rodar o comando:
 ```bash
 php vendor/bin/phpunit tests/Feature/Controllers/UploadControllerTest.php
 ```
