@@ -131,7 +131,7 @@
   
 
 
-# Documentação da API - Upload de Transação
+# Documentação da API
 
 ## Descrição:
 Este endpoint permite enviar os dados do arquivo que serão via POST, incluindo informações sobre a loja e os detalhes da transação.
