@@ -9,7 +9,7 @@ Essas tecnologias foram escolhidas para proporcionar uma experiência de desenvo
 Para rodar os testes, tem que navegar até a pasta da api do projeto, e rodar o comando
 ```bash
 php vendor/bin/phpunit tests/Feature/Controllers/UploadControllerTest.php
-
+```
 
 # Documentação de Configuração do Projeto
 
